@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
+import { ControlePages } from './Components/ControlePages/ControlePages';
+import { PageOne } from './Components/PageOne';
+import { getAnalyzes } from './Components/server';
+import { Tabs } from './Components/Tabs/Tabs';
+import { getDataFromServer } from './redux/actions';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		getAnalyzes()
+		.then(res => dispatch(getDataFromServer(res.categories)))
+		.catch(err => console.log(err))
+		// eslint-disable-next-line
+	}, []);
+
+	return (
+		<div className="App">
+			<Tabs />
+			<PageOne/>
+			<ControlePages/>
+		</div>
   );
 }
 
