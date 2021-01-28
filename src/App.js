@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './App.css';
+import { useStyles } from './Components/appStyle';
 import { ControlePages } from './Components/ControlePages/ControlePages';
 import { PageOne } from './Components/PageOne';
 import { PageTwo } from './Components/PageTwo';
@@ -8,11 +9,12 @@ import { getAnalyzes } from './Components/server';
 import { Tabs } from './Components/Tabs/Tabs';
 import { getDataFromServer } from './redux/actions';
 
+
 const App = () => {
 	const dispatch = useDispatch();
 	const [btn, setBtn] = useState(0);
 	const [required, setRequired] = useState(false);
-	
+	const classes = useStyles()
 
 	useEffect(() => {
 		getAnalyzes()
@@ -32,7 +34,7 @@ const App = () => {
 	};
 
 	return (
-		<div className="App">
+		<div className={classes.app}>
 			<Tabs btn={btn}/>
 			{btn === 0 ?
 				<PageOne/> :

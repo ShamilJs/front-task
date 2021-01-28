@@ -1,32 +1,38 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import './controlePagesStyle.css';
+import { useStyles } from './controlePagesStyle';
 
 export const ControlePages = ({ btn, plusBtn, minusBtn, required }) => {
+	const classes = useStyles();
 	const price = useSelector(state => state.app.price);
 	const selectData = useSelector(state => state.app.selectData);
 
     return (
-        <div className="controlePages">
-            <div className="controlePages__block">
+        <div className={classes.controlePages}>
+            <div className={classes.controlePages__block}>
                 <button
 					className={
-						btn ? "controlePages__btn btn-active" : 
-						"controlePages__btn"}
+						btn ? classes.btnActive : 
+						classes.controlePages__btn}
 					onClick={minusBtn}
 				>Предыдущий шаг</button>
                 <button
 					className={
-						(selectData.length && !btn) ? "controlePages__btn btn-active" : 
-						(required && btn === 1) ? "controlePages__btn btn-active" : 
-						"controlePages__btn"
+						(selectData.length && !btn) ? classes.btnActive : 
+						(required && btn === 1) ? classes.btnActive : 
+						classes.controlePages__btn
 					}
 					onClick={plusBtn}
 				>
-                    Следующий шаг <span className={btn ? "dn" : ''}>{price} ₽</span>
+                    Следующий шаг
+					<span className={btn ? classes.dn : ''}>
+						{price} ₽
+					</span>
                 </button>
             </div>
-            <p className="controlePages__text">Не могу найти нужные исследования</p>
+            <p className={classes.controlePages__text}>
+				Не могу найти нужные исследования
+			</p>
         </div>
     )
 }

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useStyles } from './appStyle';
 import { BlockInput } from './BlockInput/BlockInput';
 import { BlockTextarea } from './BlockInput/BlockTextarea';
 
 export const PageTwo = ({ setRequired, btn }) => {
+	const classes = useStyles();
 	const selectData = useSelector(state => state.app.selectData);
 	const [value, setValue] = useState({ analyzes: selectData});
 	const [confirm, setConfirm] = useState(false);
@@ -23,9 +25,9 @@ export const PageTwo = ({ setRequired, btn }) => {
 	}, [value, btn])
 
     return (
-        <div className="page">
-            <div className="page__container">
-				<div className="page__title">Заполните ваши данные</div>
+        <div className={classes.page}>
+            <div className={classes.page__container}>
+				<div className={classes.page__title}>Заполните ваши данные</div>
 				<div className="block-form">
 					<div className="block-form__left">
 						<BlockInput

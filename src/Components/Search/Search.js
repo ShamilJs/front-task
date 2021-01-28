@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickCategory, searchActive, searchInAnalyzes } from '../../redux/actions';
-import './searchStyle.css';
+import { useStyles } from './searchStyle';
 
 export const Search = () => {
+	const classes = useStyles();
+
 	const data = useSelector(state => state.app.data);
 	const clickCat = useSelector(state => state.app.clickCategory);
 	const dispatch = useDispatch()
@@ -44,10 +46,10 @@ export const Search = () => {
   	}
 	
     return (
-        <div className="search">
+        <div className={classes.search}>
             <input
                 type="text"
-				className="search__input"
+				className={classes.search__input}
 				placeholder="Поиск"
 				value={search}
 				onChange={searchInList}

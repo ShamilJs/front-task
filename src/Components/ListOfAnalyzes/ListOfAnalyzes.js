@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addPrices, selectData } from '../../redux/actions';
-import './listOfAnalyzesStyle.css';
+import { useStyles } from './listOfAnalyzesStyle';
 
 export const ListOfAnalyzes = () => {
+	const classes = useStyles();
+
 	const filterData = useSelector(state => state.app.filterData);
 	const dispatch = useDispatch()
 	const [open, setOpen] = useState({});
@@ -42,29 +44,29 @@ export const ListOfAnalyzes = () => {
 	};
 	
     return (
-        <div className="listOfAnalyzes">
+        <div className={classes.listOfAnalyzes}>
 			{filterData?.map((item, i) => (
 				i < 9 ? 
 				<div
 					key={`${item.id}${i}`}
 					className={
 						!open[item.id] ?
-						"listOfAnalyzes__block" :
-						"listOfAnalyzes__block listOfAnalyzes__block-active"
+						classes.listOfAnalyzes__block :
+						classes.listOfAnalyzes__blockActive
 					}
 					onClick={() => clickOpen(item.id)}
 					>
-					<div className="listOfAnalyzes__text analyzes">
-						<p className="analyzes__title">{item.name}</p>
+					<div className={classes.listOfAnalyzes__text}>
+						<p className={classes.analyzes__title}>{item.name}</p>
 						<p 
-							className="analyzes__text"
+							className={classes.analyzes__text}
 						>{item.description}</p>
 					</div>
-					<div className="listOfAnalyzes__properties analyzes-properties">
-						<p className="analyzes-properties__price">{item.price} ₽</p>
-						<p className="analyzes-properties__date">{item.days} дней</p>
+					<div className={classes.analyzesProperties}>
+						<p className={classes.analyzesProperties__price}>{item.price} ₽</p>
+						<p className={classes.analyzesProperties__date}>{item.days} дней</p>
 						<div 
-							className="analyzes-properties__open"
+							className={classes.analyzesProperties__open}
 						>
 							{!open[item.id] && <span>+</span>}
 							{open[item.id] && <span>-</span>}

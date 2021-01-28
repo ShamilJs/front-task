@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickCategory, getFilterData, searchActive } from '../../redux/actions';
-import './categoriesStyle.css';
+import { useStyles } from './categoriesStyle';
 
 export const Categories = () => {
+	const classes = useStyles();
 	const data = useSelector(state => state.app.data);
 	const search = useSelector(state => state.app.searchActive);
 	const dispatch = useDispatch();
@@ -31,21 +32,21 @@ export const Categories = () => {
 	}
  
     return (
-        <div className="categories">
+        <div className={classes.categories}>
 			{data.map((item, i) => (
 				<div
 					key={i}
 					className={
 						(categories !== i) ?
-						"categories__block" :
-						"categories__block categories__block-active"
+						classes.categories__block :
+						classes.categories__blockActive
 					}
 					onClick={() => handlCategory(i)}
 				>
-					<div className="categories__img">
+					<div className={classes.categories__img}>
 						<img src={item.iconUrl} alt="img"/>
 					</div>
-					<div className="categories__text">{item.name}</div>
+					<div className={classes.categories__text}>{item.name}</div>
 				</div>
 			))}
 		</div>
