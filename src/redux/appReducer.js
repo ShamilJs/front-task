@@ -4,14 +4,16 @@ import { GET_DATA_FROM_SERVER,
 	GET_FILTER_DATA, ADD_PRICE,
 	SEARCH_IN_LIST,
 	SEARCH_ACTIVE,
-	CLICK_CATEGORY } from "./types";
+	CLICK_CATEGORY,
+	SELECT_DATA } from "./types";
 
 const initiaState = {
 	data: [],
 	filterData: [],
 	price: 0,
 	searchActive: false,
-	clickCategory: true
+	clickCategory: true,
+	selectData: []
 };
 
 export const appReducer = (state = initiaState, action) => {
@@ -27,7 +29,9 @@ export const appReducer = (state = initiaState, action) => {
 		case SEARCH_ACTIVE: 
 			return {...state, searchActive: action.payload};
 		case CLICK_CATEGORY: 
-            return {...state, clickCategory: action.payload};
+			return {...state, clickCategory: action.payload};
+		case SELECT_DATA: 
+            return {...state, selectData: action.payload};
         default: return state;
     }
 };

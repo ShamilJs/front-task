@@ -1,3 +1,6 @@
+.dn{
+	display: none !important;
+}
 .controlePages__btn{
     width: 236px;
     height: 50px;
@@ -5,14 +8,17 @@
 	border-radius: 10px;
 	color: #0036F5;
 	border: none;
+	pointer-events: none;
 }
 .controlePages__btn span{
 	display: inline-block;
 	margin-left: 40px;
 }
 .btn-active{
-	background: #0036F5;
+	background: #0036F5 !important;
 	color: #FFFFFF;
+	cursor: pointer;
+	pointer-events: all;
 }
 .controlePages__text{
 	font-family: Raleway;
@@ -28,6 +34,7 @@
 	justify-content: center;
 	align-items: center;
 	margin-top: 20px;
+	padding-bottom: 200px;
 }
 .controlePages__block{
 	width: 488px;

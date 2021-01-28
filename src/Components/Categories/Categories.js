@@ -6,8 +6,7 @@ import './categoriesStyle.css';
 export const Categories = () => {
 	const data = useSelector(state => state.app.data);
 	const search = useSelector(state => state.app.searchActive);
-	
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 	const [categories, setCategories] = useState(0);
 	const [categoriesTemp, setCategoriesTemp] = useState(0);
 
@@ -20,8 +19,7 @@ export const Categories = () => {
 		if (search) {
 			setCategoriesTemp(categories)
 			setCategories(null)
-		}
-		else setCategories(categoriesTemp)
+		} else setCategories(categoriesTemp)
 		// eslint-disable-next-line
 	}, [search])
 

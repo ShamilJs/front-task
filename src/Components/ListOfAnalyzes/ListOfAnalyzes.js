@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPrices } from '../../redux/actions';
+import { addPrices, selectData } from '../../redux/actions';
 import './listOfAnalyzesStyle.css';
 
 export const ListOfAnalyzes = () => {
@@ -8,30 +8,37 @@ export const ListOfAnalyzes = () => {
 	const dispatch = useDispatch()
 	const [open, setOpen] = useState({});
 	const [price, setPrice] = useState(0);
-
+	const [selectFilter, setSelectFilter] = useState([]);
 
 	useEffect(() => {
 		dispatch(addPrices(price))
+		dispatch(selectData(selectFilter))
 		// eslint-disable-next-line
-	}, [price]);
+	}, [price, selectFilter]);
 
 	const addPrice = index => {
 		if (open[index]) {
 			filterData.forEach(item => {
-				if (item.id === index) setPrice(price - item.price)
+				if (item.id === index) {
+					setPrice(price - item.price)
+					setSelectFilter(selectFilter.filter(filter => item !== filter))
+				}
 			});
 		}
 		else {
 			filterData.forEach(item => {
-				if (item.id === index) setPrice(price + item.price)
+				if (item.id === index) {
+					setPrice(price + item.price)
+					setSelectFilter([...selectFilter, item])
+				}
 			});
 		}
-	}
+	};
 
 	const clickOpen = index => {
 		setOpen(open =>
 			({...open, [index]: !open[index]}));
-			addPrice(index)
+			addPrice(index);
 	};
 	
     return (
@@ -58,7 +65,6 @@ export const ListOfAnalyzes = () => {
 						<p className="analyzes-properties__date">{item.days} дней</p>
 						<div 
 							className="analyzes-properties__open"
-							
 						>
 							{!open[item.id] && <span>+</span>}
 							{open[item.id] && <span>-</span>}

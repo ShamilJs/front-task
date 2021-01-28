@@ -2,7 +2,8 @@ import { GET_DATA_FROM_SERVER,
 	SEARCH_IN_LIST,
 	GET_FILTER_DATA,
 	ADD_PRICE, SEARCH_ACTIVE,
-	CLICK_CATEGORY } from "./types";
+    CLICK_CATEGORY,
+    SELECT_DATA } from "./types";
 
 export const getDataFromServer = data => {
     return {
@@ -38,5 +39,11 @@ export const clickCategory = status => {
     return {
         type: CLICK_CATEGORY,
         payload: status,
+    };
+};
+export const selectData = data => {
+    return {
+        type: SELECT_DATA,
+        payload: data,
     };
 };
