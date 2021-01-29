@@ -6,6 +6,8 @@ export const ControlePages = ({ btn, plusBtn, minusBtn, required }) => {
 	const classes = useStyles();
 	const price = useSelector(state => state.app.price);
 	const selectData = useSelector(state => state.app.selectData);
+	let text = !btn ? 'Не могу найти нужные исследования' : 
+		'Нажимая на кнопку, вы принимаете Оферту об оказании услуг и даете согласие на обработку персональных данных в соответствии с Политикой конфиденциальности';
 
     return (
         <div className={classes.controlePages}>
@@ -31,7 +33,7 @@ export const ControlePages = ({ btn, plusBtn, minusBtn, required }) => {
                 </button>
             </div>
             <p className={classes.controlePages__text}>
-				Не могу найти нужные исследования
+				{text}
 			</p>
         </div>
     )

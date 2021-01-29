@@ -1,11 +1,10 @@
-// import {  } from './types';
-
 import { GET_DATA_FROM_SERVER,
 	GET_FILTER_DATA, ADD_PRICE,
 	SEARCH_IN_LIST,
 	SEARCH_ACTIVE,
 	CLICK_CATEGORY,
-	SELECT_DATA } from "./types";
+	SELECT_DATA,
+	SET_OPEN } from "./types";
 
 const initiaState = {
 	data: [],
@@ -13,13 +12,16 @@ const initiaState = {
 	price: 0,
 	searchActive: false,
 	clickCategory: true,
-	selectData: []
+	selectData: [],
+	setOpen: {}
 };
 
 export const appReducer = (state = initiaState, action) => {
     switch (action.type) {
 		case ADD_PRICE: 
 			return {...state, price: action.payload};
+		case SET_OPEN: 
+			return {...state, setOpen: action.payload};
 		case GET_DATA_FROM_SERVER: 
 			return {...state, data: action.payload, filterData: action.payload.filter((item, i) => i === 0)[0].analysisProducts};
 		case GET_FILTER_DATA: 

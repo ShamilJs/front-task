@@ -5,9 +5,11 @@ import { useStyles } from './Components/appStyle';
 import { ControlePages } from './Components/ControlePages/ControlePages';
 import { PageOne } from './Components/PageOne';
 import { PageTwo } from './Components/PageTwo';
+// eslint-disable-next-line
 import { getAnalyzes } from './Components/server';
 import { Tabs } from './Components/Tabs/Tabs';
 import { getDataFromServer } from './redux/actions';
+import DB from './DB.json';
 
 
 const App = () => {
@@ -17,9 +19,13 @@ const App = () => {
 	const classes = useStyles()
 
 	useEffect(() => {
-		getAnalyzes()
-		.then(res => dispatch(getDataFromServer(res.categories)))
-		.catch(err => console.log(err))
+		// Данные берем из локального файла
+		dispatch(getDataFromServer(DB.categories))
+
+		// Обращение к серверу данных (не настроены корсы)
+		// getAnalyzes()
+		// .then(res => dispatch(getDataFromServer(res.categories)))
+		// .catch(err => console.log(err))
 		// eslint-disable-next-line
 	}, []);
 

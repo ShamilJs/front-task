@@ -3,7 +3,8 @@ import { GET_DATA_FROM_SERVER,
 	GET_FILTER_DATA,
 	ADD_PRICE, SEARCH_ACTIVE,
     CLICK_CATEGORY,
-    SELECT_DATA } from "./types";
+    SELECT_DATA,
+    SET_OPEN } from "./types";
 
 export const getDataFromServer = data => {
     return {
@@ -11,6 +12,15 @@ export const getDataFromServer = data => {
         payload: data,
     };
 };
+
+export const setOpenItem = obj => {
+    return {
+        type: SET_OPEN,
+        payload: obj,
+    };
+};
+
+
 export const getFilterData = index => {
     return {
         type: GET_FILTER_DATA,

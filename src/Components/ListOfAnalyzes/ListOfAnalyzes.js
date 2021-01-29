@@ -1,25 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPrices, selectData } from '../../redux/actions';
+import { addPrices, selectData, setOpenItem } from '../../redux/actions';
 import { useStyles } from './listOfAnalyzesStyle';
 
 export const ListOfAnalyzes = () => {
 	const classes = useStyles();
 
 	const filterData = useSelector(state => state.app.filterData);
+	const openItem = useSelector(state => state.app.setOpen);
+	const prices = useSelector(state => state.app.price);
+	const selectDatas = useSelector(state => state.app.selectData);
 	const dispatch = useDispatch()
 	const [open, setOpen] = useState({});
 	const [price, setPrice] = useState(0);
 	const [selectFilter, setSelectFilter] = useState([]);
 
 	useEffect(() => {
+		setOpen(openItem);
+		setPrice(prices);
+		setSelectFilter(selectDatas);
+		// eslint-disable-next-line
+	}, [])
+
+	useEffect(() => {
 		dispatch(addPrices(price))
 		dispatch(selectData(selectFilter))
+		if (!Object.keys(open).length) return
+		dispatch(setOpenItem(open));
 		// eslint-disable-next-line
-	}, [price, selectFilter]);
+	}, [price, selectFilter, open]);
+
+
 
 	const addPrice = index => {
-		if (open[index]) {
+		if (openItem[index]) {
 			filterData.forEach(item => {
 				if (item.id === index) {
 					setPrice(price - item.price)
@@ -50,7 +64,7 @@ export const ListOfAnalyzes = () => {
 				<div
 					key={`${item.id}${i}`}
 					className={
-						!open[item.id] ?
+						!openItem[item.id] ?
 						classes.listOfAnalyzes__block :
 						classes.listOfAnalyzes__blockActive
 					}

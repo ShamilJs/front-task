@@ -11,3 +11,5 @@ export const SEARCH_ACTIVE = 'SEARCH_ACTIVE'
 export const CLICK_CATEGORY = 'CLICK_CATEGORY'
 
 export const SELECT_DATA = 'SELECT_DATA'
+
+export const SET_OPEN = 'SET_OPEN'
