@@ -18,6 +18,7 @@ export const useStyles = createUseStyles({
 		boxShadow: '0px 0px 33.1778px rgba(166, 189, 219, 04)',
 		borderRadius: '10px',
 		marginRight: '13px',
+		marginBottom: '13px',
 		cursor: 'pointer',
 		'&:hover': {
 			background: '#0036F5',
@@ -28,7 +29,7 @@ export const useStyles = createUseStyles({
 			transitionDuration: '500ms',
 		},
 		'&:hover $categories__img': {
-			background: '#FFFFFF',
+			filter: 'brightness(0) invert(1)', 
 			transitionDuration: '500ms',
 		},
 	},
@@ -40,13 +41,15 @@ export const useStyles = createUseStyles({
 		boxShadow: '0px 0px 33.1778px rgba(166, 189, 219, 04)',
 		borderRadius: '10px',
 		marginRight: '13px',
+		marginBottom: '13px',
 		cursor: 'pointer',
 		'& $categories__text': {
 			color: '#FFFFFF',
 			transitionDuration: '500ms',
 		},
 		'& $categories__img': {
-			background: '#FFFFFF',
+			filter: 'brightness(0) invert(1)',  
+			// background: '#FFFFFF',
 			transitionDuration: '500ms',
 		},
 	},
@@ -64,7 +67,9 @@ export const useStyles = createUseStyles({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginTop: '40px',
+		margin: '40px 40px 0 40px',
+		'flex-wrap': 'wrap',
+		
 	}
 })
 

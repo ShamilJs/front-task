@@ -5,7 +5,7 @@ export const useStyles = createUseStyles({
 		background: '#F8FAFF'
     },
     page: {
-        height: '500px',
+        height: 'auto',
         marginTop: '50px',
     },
     page__container: { 

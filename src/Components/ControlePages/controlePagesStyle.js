@@ -43,14 +43,18 @@ export const useStyles = createUseStyles({
 		lineHeight: '16px',
 		textAlign: 'center',
 		color: '#7C89A8',
-		marginTop: '15px',
+		margin: '15px 150px 0 150px',
+		'& span': {
+			color: '#0036F5',
+			cursor: 'pointer'
+		}
 	},
 	controlePages: {
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: '20px',
+		marginTop: '30px',
 		paddingBottom: '200px',
 	},
 	controlePages__block: {
@@ -59,4 +63,5 @@ export const useStyles = createUseStyles({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 	},
+	
 })

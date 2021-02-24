@@ -10,6 +10,7 @@ export const Search = () => {
 	const clickCat = useSelector(state => state.app.clickCategory);
 	const dispatch = useDispatch()
 	const [search, setSearch] = useState('');
+	const [click, setClick] = useState(false);
 
 	useEffect(() => {
 		let array = [];
@@ -41,6 +42,8 @@ export const Search = () => {
 		setSearch(e.target.value)
 	};
 
+	const handleClick = () => setClick(!click);
+
 	const keyDownBtn = e => {
 		if (e.keyCode === 13) e.preventDefault()
   	}
@@ -50,10 +53,12 @@ export const Search = () => {
             <input
                 type="text"
 				className={classes.search__input}
-				placeholder="Поиск"
+				placeholder={click ? '' : "Поиск"}
 				value={search}
 				onChange={searchInList}
 				onKeyDown={keyDownBtn}
+				onFocus={handleClick}
+				onBlur={handleClick}
 			/>
         </div>
     )

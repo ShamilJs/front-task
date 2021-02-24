@@ -33,7 +33,18 @@ export const useStyles = createUseStyles({
         margin: '13px 13px 0 0',
         display: 'flex',
 		justifyContent: 'space-between',
-        borderRight: '4px solid #0036F5',
+        position: 'relative',
+        '&:after': {
+            position: 'absolute',
+            content: '""',
+            height: '100%',
+            width: '4px',
+            top: '0',
+            right: '0',
+            background: '#0036F5',
+            borderTopRightRadius: '10px',
+            borderBottomRightRadius: '10px',
+        },
     },
     
     listOfAnalyzes__text: {

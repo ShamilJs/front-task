@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useStyles } from './controlePagesStyle';
 
@@ -6,8 +6,14 @@ export const ControlePages = ({ btn, plusBtn, minusBtn, required }) => {
 	const classes = useStyles();
 	const price = useSelector(state => state.app.price);
 	const selectData = useSelector(state => state.app.selectData);
-	let text = !btn ? 'Не могу найти нужные исследования' : 
-		'Нажимая на кнопку, вы принимаете Оферту об оказании услуг и даете согласие на обработку персональных данных в соответствии с Политикой конфиденциальности';
+	useEffect(() => {
+		let text = document.querySelector(`.${classes.controlePages__text}`)
+		if (!btn) text.innerHTML = `Не могу найти нужные исследования`
+		else if (btn) text.innerHTML = `Нажимая на кнопку, вы принимаете 
+			<span>Оферту об оказании услуг</span> и даете согласие на обработку 
+			персональных данных в соответствии с <span>Политикой конфиденциальности</span>`
+	// eslint-disable-next-line
+	}, [btn])
 
     return (
         <div className={classes.controlePages}>
@@ -32,9 +38,7 @@ export const ControlePages = ({ btn, plusBtn, minusBtn, required }) => {
 					</span>
                 </button>
             </div>
-            <p className={classes.controlePages__text}>
-				{text}
-			</p>
+            <p className={classes.controlePages__text}></p>
         </div>
     )
 }
