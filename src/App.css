@@ -1,4 +1,6 @@
-
+body {
+	margin: 0;
+}
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @font-face {
 	font-family: SF UI Display; 
